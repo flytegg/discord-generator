@@ -7,9 +7,38 @@ class Component {
     companion object {
         val dateFormatter = SimpleDateFormat("dd/MM/yyyy")
         val datetimeFormatter = SimpleDateFormat("HH:mm")
-        const val START =
-            "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><title>%title% for %username% (%date%)</title><script src=\"https://cdn.tailwindcss.com\"></script></head><style>@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');body {font-family: Inter, sans-serif;}</style><body class=\"bg-[#313338] min-h-screen space-y-6\"><div class=\"bg-[#2b2d31] py-6 px-24 flex justify-between items-center\"><h1 class=\"text-[#f2f3f5] text-xl font-semibold\">%title% for %displayName% <span class=\"text-[#949ba4]\">(%username%)</span></h1><h1 class=\"text-[#949ba4] text-lg font-medium\">Export generated %datetime%</h1></div><div class=\"flex px-24\"><div class=\"flex flex-col space-y-6\">"
         const val END = "</div></div></body></html>"
+    }
+
+    class Document(
+        private val title: String,
+        private val date: Date
+    ) : HtmlElement {
+        override fun asHtml(): String {
+            return """
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>$title</title>
+                    <script src="https://cdn.tailwindcss.com"></script>
+                </head>
+                <style>
+                    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+                
+                    body {
+                        font-family: Inter, sans-serif;
+                    }
+                </style>
+                <body class="bg-[#313338] min-h-screen space-y-6">
+                    <div class="bg-[#2b2d31] py-6 px-24 flex justify-between items-center">
+                        <h1 class="text-[#f2f3f5] text-xl font-semibold">$title</h1>
+                        <h1 class="text-[#949ba4] text-lg font-medium">Export generated ${dateFormatter.format(date)} at ${datetimeFormatter.format(date)}</h1>
+                    </div>
+                    <div class="flex px-24">
+            """.trimIndent()
+        }
     }
 
     class Author(
