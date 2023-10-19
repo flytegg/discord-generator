@@ -36,7 +36,7 @@ class Component {
                         <h1 class="text-[#f2f3f5] text-xl font-semibold">$title</h1>
                         <h1 class="text-[#949ba4] text-lg font-medium">Export generated ${dateFormatter.format(date)} at ${datetimeFormatter.format(date)}</h1>
                     </div>
-                    <div class="flex px-24">
+                    <div class="flex flex-col px-24 space-y-6">
             """.trimIndent()
         }
     }
