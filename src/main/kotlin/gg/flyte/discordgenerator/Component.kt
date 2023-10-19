@@ -48,14 +48,14 @@ class Component {
     )
 
     class Embed(
-        private val title: String,
-        private val description: String
+        private val title: String?,
+        private val description: String?
     ) : HtmlElement {
         override fun asHtml(): String {
             return """
                 <div class="bg-[#2b2d31] rounded-lg py-3 px-5 space-y-1 mt-1">
-                    <p class="text-[#f2f3f5] text-base font-semibold">$title</p>
-                    <p class="text-[#dbdee1]">$description</p>
+                    ${if (title != null) "<p class=\"text-[#f2f3f5] text-base font-semibold\">$title</p>" else ""}
+                    ${if (description != null) "<p class=\"text-[#dbdee1]\">$description</p>" else ""}
                 </div>
             """.trimIndent()
         }
@@ -104,7 +104,7 @@ class Component {
                                 </div>
                             """.trimIndent()
                             else "<h3 class=\"text-[#f2f3f5] font-medium\">${author.name}</h3>"}
-                            <p class="text-[#949ba4] text-xs">${timestamp.epochSecondAsFormattedString()}</p>
+                            <p class="text-[#949ba4] text-xs">${timestamp.epochMillisecondsAsFormattedString()}</p>
                         </div>
                         ${if (content != null) "<p class=\"text-[#dbdee1]\">$content</p>" else ""}
                         ${if (embeds.isNotEmpty()) embeds.asHtml() else ""}
@@ -144,7 +144,8 @@ fun List<Component.Reaction>.asHtml(): String {
         """.trimIndent()
 }
 
-fun Long.epochSecondAsFormattedString(): String {
-    val date = Date(this)
-    return "${Component.dateFormatter.format(date)} ${Component.datetimeFormatter.format(date)}"
+fun Long.epochMillisecondsAsFormattedString(): String {
+    Date(this).apply {
+        return "${Component.dateFormatter.format(this)} ${Component.datetimeFormatter.format(this)}"
+    }
 }
