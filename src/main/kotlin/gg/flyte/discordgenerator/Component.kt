@@ -34,7 +34,11 @@ class Component {
                 <body class="bg-[#313338] min-h-screen space-y-6">
                     <div class="bg-[#2b2d31] py-6 px-24 flex justify-between items-center">
                         <h1 class="text-[#f2f3f5] text-xl font-semibold">$title</h1>
-                        <h1 class="text-[#949ba4] text-lg font-medium">Export generated ${dateFormatter.format(date)} at ${datetimeFormatter.format(date)}</h1>
+                        <h1 class="text-[#949ba4] text-lg font-medium">Export generated ${dateFormatter.format(date)} at ${
+                datetimeFormatter.format(
+                    date
+                )
+            }</h1>
                     </div>
                     <div class="flex flex-col px-24 space-y-6">
             """.trimIndent()
@@ -97,13 +101,15 @@ class Component {
                     <img src="${author.imageUrl}" class="rounded-full w-12 h-12">
                     <div class="flex flex-col">
                         <div class="flex space-x-2 items-center">
-                            ${if (author.isBot) """
+                            ${
+                if (author.isBot) """
                                 <div class="flex space-x-1.5 items-center">
                                     <h3 class="text-[#f2f3f5] font-medium">${author.name}</h3>
                                     <p class="bg-[#5865f2] text-xs text-[#f2f3f5] py-0.5 px-1.5 rounded font-medium">BOT</p>
                                 </div>
                             """.trimIndent()
-                            else "<h3 class=\"text-[#f2f3f5] font-medium\">${author.name}</h3>"}
+                else "<h3 class=\"text-[#f2f3f5] font-medium\">${author.name}</h3>"
+            }
                             <p class="text-[#949ba4] text-xs">${timestamp.epochMillisecondsAsFormattedString()}</p>
                         </div>
                         ${if (content != null) "<p class=\"text-[#dbdee1]\">$content</p>" else ""}

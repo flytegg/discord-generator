@@ -18,9 +18,10 @@ class DiscordGenerator(
 
     fun addMessages(messages: List<Component.Message>) = this.messages.addAll(messages)
 
-    private fun setupDocument() =htmlContent.append(Component.Document(title, Date()).asHtml())
+    private fun setupDocument() = htmlContent.append(Component.Document(title, Date()).asHtml())
 
-    private fun compileMessages() = (if (reversed) messages.reversed() else messages).forEach { htmlContent.append(it.asHtml()) }
+    private fun compileMessages() =
+        (if (reversed) messages.reversed() else messages).forEach { htmlContent.append(it.asHtml()) }
 
     fun generate(): String {
         setupDocument()
