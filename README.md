@@ -40,7 +40,7 @@ Gradle (Kotlin DSL)
 ```kotlin
 maven("https://repo.flyte.gg/releases")
 
-implementation("gg.flyte:discordgenerator:1.0.3")
+implementation("gg.flyte:discordgenerator:1.0.4")
 ```
 
 Gradle (Groovy DSL)
@@ -49,7 +49,7 @@ maven {
     url "https://repo.flyte.gg/releases"
 }
 
-implementation "gg.flyte:discordgenerator:1.0.3"
+implementation "gg.flyte:discordgenerator:1.0.4"
 ```
 
 Maven
@@ -63,6 +63,6 @@ Maven
 <dependency>
   <groupId>gg.flyte</groupId>
   <artifactId>discordgenerator</artifactId>
-  <version>1.0.3</version>
+  <version>1.0.4</version>
 </dependency>
 ```
