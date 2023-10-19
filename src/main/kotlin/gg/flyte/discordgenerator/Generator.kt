@@ -13,17 +13,13 @@ class DiscordGenerator(
 
     private val messages = mutableListOf<Component.Message>()
 
-    fun addMessages(vararg messages: Component.Message) {
-        this.messages.addAll(messages)
-    }
+    fun addMessages(vararg messages: Component.Message) = this.messages.addAll(messages)
 
-    private fun setupDocument() {
-        htmlContent.append(Component.Document(title, Date()).asHtml())
-    }
+    fun addMessages(messages: List<Component.Message>) = this.messages.addAll(messages)
 
-    private fun compileMessages() {
-        messages.forEach { htmlContent.append(it.asHtml()) }
-    }
+    private fun setupDocument() =htmlContent.append(Component.Document(title, Date()).asHtml())
+
+    private fun compileMessages() = messages.forEach { htmlContent.append(it.asHtml()) }
 
     fun generate(): String {
         setupDocument()
