@@ -15,7 +15,7 @@ fun main() {
                     false
                 ),
                 timestamp = 1696948904000L,
-                content = "testing yessir yes epic",
+                content = "testing yessir yes epic https://github.com/flytegg/ls-discord-bot",
                 embeds = listOf(
                     Component.Embed("Josh - Support Ticket #8", "Some description"),
                 ),
@@ -52,6 +52,6 @@ fun main() {
             )
         )
     }.generate()
-    println(output)
+    //println(output)
     Files.writeString(Path.of("output.html"), output)
 }

@@ -40,7 +40,7 @@ class Component {
                 )
             }</h1>
                     </div>
-                    <div class="flex flex-col px-24 space-y-6">
+                    <div class="flex flex-col px-24 space-y-6 pb-6">
             """.trimIndent()
         }
     }
@@ -112,7 +112,7 @@ class Component {
             }
                             <p class="text-[#949ba4] text-xs">${timestamp.epochMillisecondsAsFormattedString()}</p>
                         </div>
-                        ${if (content != null) "<p class=\"text-[#dbdee1]\">${content.replace("\n", "<br>")}</p>" else ""}
+                        ${if (content != null) "<p class=\"text-[#dbdee1]\">${processContent(content)}</p>" else ""}
                         ${if (embeds.isNotEmpty()) embeds.asHtml() else ""}
                         ${if (images.isNotEmpty()) images.asHtml() else ""}
                         ${if (reactions.isNotEmpty()) reactions.asHtml() else ""}
@@ -125,6 +125,16 @@ class Component {
     interface HtmlElement {
         fun asHtml(): String
     }
+}
+
+private val urlRegex = """\b(https?|ftp)://[^\s/$.?#].[^\s]*\b""".toRegex()
+
+fun processContent(content: String): String {
+    var processedContent = content
+    urlRegex.findAll(content).forEach {
+        processedContent = processedContent.replace(it.value, "<a class=\"text-blue-400 hover:underline\" href=\"${it.value}\">${it.value}</a>")
+    }
+    return processedContent.replace("\n", "<br>")
 }
 
 @JvmName("embedsAsHtml")
