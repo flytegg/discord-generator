@@ -34,7 +34,7 @@ class Component {
                 <body class="bg-[#313338] min-h-screen space-y-6">
                     <div class="bg-[#2b2d31] py-6 px-24 flex justify-between items-center">
                         <h1 class="text-[#f2f3f5] text-xl font-semibold">$title</h1>
-                        <h1 class="text-[#949ba4] text-lg font-medium">Export generated ${dateFormatter.format(date)} at ${
+                        <h1 class="text-[#949ba4] text-lg font-medium">Generated ${dateFormatter.format(date)} at ${
                 datetimeFormatter.format(
                     date
                 )
