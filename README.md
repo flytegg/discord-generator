@@ -33,3 +33,36 @@ val output = DiscordGenerator {
 ```
 This above produces this HTML document:
 ![image](https://github.com/flytegg/discord-generator/assets/43449531/d7755e6a-7f4f-4f78-b225-d9d6860ebc59)
+
+## How to use
+
+Gradle (Kotlin DSL)
+```kotlin
+maven("https://repo.flyte.gg/releases")
+
+implementation("gg.flyte:discordgenerator:1.0.1")
+```
+
+Gradle (Groovy DSL)
+```groovy
+maven {
+    url "https://repo.flyte.gg/releases"
+}
+
+implementation "gg.flyte:discordgenerator:1.0.1"
+```
+
+Maven
+```xml
+<repository>
+    <id>flyte-repository-releases</id>
+    <name>Flyte Repository</name>
+    <url>https://repo.flyte.gg/releases</url>
+</repository>
+
+<dependency>
+  <groupId>gg.flyte</groupId>
+  <artifactId>discordgenerator</artifactId>
+  <version>1.0.1</version>
+</dependency>
+```
