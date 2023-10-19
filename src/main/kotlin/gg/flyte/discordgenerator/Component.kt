@@ -57,7 +57,7 @@ class Component {
     ) : HtmlElement {
         override fun asHtml(): String {
             return """
-                <div class="bg-[#2b2d31] rounded-lg py-3 px-5 space-y-1 mt-1">
+                <div class="bg-[#2b2d31] rounded-lg py-3 px-5 space-y-1 mt-1 self-start">
                     ${if (title != null) "<p class=\"text-[#f2f3f5] text-base font-semibold\">$title</p>" else ""}
                     ${if (description != null) "<p class=\"text-[#dbdee1]\">$description</p>" else ""}
                 </div>
@@ -69,7 +69,7 @@ class Component {
         private val imageUrl: String
     ) : HtmlElement {
         override fun asHtml(): String {
-            return "<img class=\"rounded-lg h-72 mt-2\" src=\"$imageUrl\">"
+            return "<img class=\"rounded-lg h-72 mt-2 self-start\" src=\"$imageUrl\">"
         }
     }
 
@@ -112,7 +112,7 @@ class Component {
             }
                             <p class="text-[#949ba4] text-xs">${timestamp.epochMillisecondsAsFormattedString()}</p>
                         </div>
-                        ${if (content != null) "<p class=\"text-[#dbdee1]\">$content</p>" else ""}
+                        ${if (content != null) "<p class=\"text-[#dbdee1]\">${content.replace("\n", "<br>")}</p>" else ""}
                         ${if (embeds.isNotEmpty()) embeds.asHtml() else ""}
                         ${if (images.isNotEmpty()) images.asHtml() else ""}
                         ${if (reactions.isNotEmpty()) reactions.asHtml() else ""}
