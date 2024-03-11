@@ -32,15 +32,15 @@ class Component {
                     }
                 </style>
                 <body class="bg-[#313338] min-h-screen space-y-6">
-                    <div class="bg-[#2b2d31] py-6 px-24 flex justify-between items-center">
-                        <h1 class="text-[#f2f3f5] text-xl font-semibold">$title</h1>
-                        <h1 class="text-[#949ba4] text-lg font-medium">Generated ${dateFormatter.format(date)} at ${
+                    <div class="bg-[#2b2d31] py-2 xl:py-6 px-2 xl:px-24 flex justify-between items-center">
+                        <h1 class="text-[#f2f3f5] text-lg xl:text-xl font-semibold">$title</h1>
+                        <h1 class="text-[#949ba4] text-base xl:text-lg font-medium text-right">Generated ${dateFormatter.format(date)} at ${
                 datetimeFormatter.format(
                     date
                 )
             }</h1>
                     </div>
-                    <div class="flex flex-col px-24 space-y-6 pb-6">
+                    <div class="flex flex-col space-y-6 px-2 xl:px-24 pb-6">
             """.trimIndent()
         }
     }
@@ -128,12 +128,19 @@ class Component {
 }
 
 private val urlRegex = """\b(https?|ftp)://[^\s/$.?#].[^\s]*\b""".toRegex()
+private val mentionRegex = """<:mention@([a-zA-Z0-9]+)>""".toRegex()
 
 fun processContent(content: String): String {
     var processedContent = content
+
     urlRegex.findAll(content).forEach {
-        processedContent = processedContent.replace(it.value, "<a class=\"text-blue-400 hover:underline\" href=\"${it.value}\">${it.value}</a>")
+        processedContent = processedContent.replace(it.value, "<a class=\"text-[#00A8FC] hover:underline\" href=\"${it.value}\">${it.value}</a>")
     }
+
+    mentionRegex.findAll(content).forEach {
+        processedContent = processedContent.replace(it.value, "<span class=\"text-[#C9CDFB] bg-[#3C4270] font-medium p-[2px] rounded\">@${it.groupValues[1]}</span>")
+    }
+
     return processedContent.replace("\n", "<br>")
 }
 
