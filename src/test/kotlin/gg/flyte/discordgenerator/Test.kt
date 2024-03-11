@@ -6,6 +6,7 @@ import java.nio.file.Path
 fun main() {
     val output = DiscordGenerator {
         title = "Export for joshbker"
+        date = "Generated at LOL"
 
         addMessages(
             Component.Message(
