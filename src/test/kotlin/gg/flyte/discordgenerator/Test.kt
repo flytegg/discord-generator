@@ -6,12 +6,12 @@ import java.nio.file.Path
 fun main() {
     val output = DiscordGenerator {
         title = "Export for joshbker"
-        date = "Generated at LOL"
+        date = "Generated at you can put a date here if you want"
 
         addMessages(
             Component.Message(
                 author = Component.Author(
-                    "https://cdn.discordapp.com/guilds/1055283692668469341/users/259780560707256321/avatars/df7191cbe92b582ff1abc271aea76e8a.webp?size=128",
+                    "https://cdn.discordapp.com/avatars/259780560707256321/1aa50313a2f1ae6e9495d8368c653ccf.webp",
                     "josh",
                     false
                 ),
@@ -32,7 +32,7 @@ fun main() {
             ),
             Component.Message(
                 author = Component.Author(
-                    "https://cdn.discordapp.com/guilds/1055283692668469341/users/259780560707256321/avatars/df7191cbe92b582ff1abc271aea76e8a.webp?size=128",
+                    "https://cdn.discordapp.com/avatars/259780560707256321/1aa50313a2f1ae6e9495d8368c653ccf.webp",
                     "josh",
                     false
                 ),

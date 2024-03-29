@@ -1,7 +1,5 @@
 package gg.flyte.discordgenerator
 
-import java.time.LocalDate
-import java.time.LocalDateTime
 import java.util.*
 
 class DiscordGenerator(

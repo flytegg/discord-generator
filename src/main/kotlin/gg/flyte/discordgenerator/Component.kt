@@ -12,7 +12,7 @@ class Component {
 
     class Document(
         private val title: String,
-        private val date: Date
+        private val date: String
     ) : HtmlElement {
         override fun asHtml(): String {
             return """
@@ -34,11 +34,7 @@ class Component {
                 <body class="bg-[#313338] min-h-screen space-y-6">
                     <div class="bg-[#2b2d31] py-2 xl:py-6 px-2 xl:px-24 flex justify-between items-center">
                         <h1 class="text-[#f2f3f5] text-lg xl:text-xl font-semibold">$title</h1>
-                        <h1 class="text-[#949ba4] text-base xl:text-lg font-medium text-right">Generated ${dateFormatter.format(date)} at ${
-                datetimeFormatter.format(
-                    date
-                )
-            }</h1>
+                        <h1 class="text-[#949ba4] text-base xl:text-lg font-medium text-right">$date</h1>
                     </div>
                     <div class="flex flex-col space-y-6 px-2 xl:px-24 pb-6">
             """.trimIndent()
