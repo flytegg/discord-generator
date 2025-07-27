@@ -37,7 +37,7 @@ fun main() {
                     false
                 ),
                 timestamp = 1696948904000L,
-                content = "testing yessir yes epic",
+                content = "testing yessir **yes** epic",
                 embeds = listOf(
                     Component.Embed("Josh - Support Ticket #8", "Some description"),
                 ),

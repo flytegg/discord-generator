@@ -123,8 +123,9 @@ class Component {
     }
 }
 
-private val urlRegex = """\b(https?|ftp)://[^\s/$.?#].[^\s]*\b""".toRegex()
+private val urlRegex = """\b(https?|ftp)://[^\s/$.?#].\S*\b""".toRegex()
 private val mentionRegex = """<:mention@([a-zA-Z0-9]+)>""".toRegex()
+private val boldRegex = """\*\*(.*?)\*\*""".toRegex()
 
 fun processContent(content: String): String {
     var processedContent = content
@@ -135,6 +136,10 @@ fun processContent(content: String): String {
 
     mentionRegex.findAll(content).forEach {
         processedContent = processedContent.replace(it.value, "<span class=\"text-[#C9CDFB] bg-[#3C4270] font-medium p-[2px] rounded\">@${it.groupValues[1]}</span>")
+    }
+
+    boldRegex.findAll(processedContent).forEach {
+        processedContent = processedContent.replace(it.value, "<strong>${it.groupValues[1]}</strong>")
     }
 
     return processedContent.replace("\n", "<br>")
