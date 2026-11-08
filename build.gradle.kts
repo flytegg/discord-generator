@@ -1,11 +1,11 @@
 plugins {
-    kotlin("jvm") version "1.9.0"
-    id("com.github.johnrengelman.shadow") version "8.1.1"
-    id("maven-publish")
+    kotlin("jvm") version "2.2.0"
+    `java-library`
+    `maven-publish`
 }
 
 group = "gg.flyte"
-version = "1.0.7"
+version = "2.0.0"
 
 repositories {
     mavenCentral()
@@ -13,6 +13,20 @@ repositories {
 
 kotlin {
     jvmToolchain(17)
+}
+
+java {
+    withSourcesJar()
+}
+
+dependencies {
+    testImplementation(kotlin("test"))
+}
+
+tasks.test {
+    useJUnitPlatform()
+    // The sample-transcript test writes an HTML file here that you can open in a browser.
+    systemProperty("sampleOutput", layout.buildDirectory.file("sample-transcript.html").get().asFile.absolutePath)
 }
 
 publishing {
@@ -31,15 +45,13 @@ publishing {
         }
     }
 
-    publishing {
-        publications {
-            create<MavenPublication>("maven") {
-                groupId = group.toString()
-                artifactId = "discordgenerator"
-                version = version.toString()
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = group.toString()
+            artifactId = "discordgenerator"
+            version = version.toString()
 
-                from(components["java"])
-            }
+            from(components["java"])
         }
     }
 }
